@@ -1,12 +1,12 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.orm import declarative_base
+import os
 
-DATABASE_URL = "sqlite:///terrario.db"
+DATABASE_URL = os.getenv('DATABASE_URL')
 
 engine = create_engine(
-    DATABASE_URL,
-    connect_args={"check_same_thread":False}
+    DATABASE_URL
 )
 
 # Para comunicar com o mysql : msql+pymysql://usuario:senha@db:3306/terrarium
