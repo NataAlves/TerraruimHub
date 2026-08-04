@@ -18,6 +18,22 @@ services:
       
     volumes:
       - mysql_data:/var/lib/mysql
-    
+  api:
+    build:
+      context: .
+
+    container_name: terrariumhub-api
+
+    restart: unless-stopped
+
+    env_file:
+      - .env
+
+    ports:
+      - "8000:8000"
+
+    depends_on:
+      - mysql
+      
 volumes:
   mysql_data:
