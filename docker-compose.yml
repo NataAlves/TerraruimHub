@@ -1,0 +1,23 @@
+services: 
+  mysql: 
+    mysql: mariadb:11
+    container_name: terrariumhub_mysql
+    restart: unless-stopped
+
+    env_file:
+      - .env
+
+    environment:
+      MARIADB_ROOT_PASSWORD: ${MARIADB_ROOT_PASSWORD}
+      MARIADB_DATABASE: ${MARIADB_DATABASE}
+      MARIADB_USER: ${MARIADB_USER}
+      MARIADB_PASSWORD: ${MARIADB_PASSWORD}
+
+    ports:
+      - "3307:3306"
+      
+    volumes:
+      - mysql_data:/var/lib/mysql
+    
+    volumes:
+      mysql_data:
