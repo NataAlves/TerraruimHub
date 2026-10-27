@@ -1,7 +1,13 @@
-# Created by venv; see https://docs.python.org/3/library/venv.html
+# Ambientes virtuais Python
 venv/
-__pycache__
-/__pycache__
-terrario.db
-*.pyc
+.venv/
+
+# Cache e arquivos compilados do Python
+__pycache__/
+*.py[cod]
+
+# Variáveis de ambiente e credenciais
 .env
+
+# Banco de dados local
+terrario.db
