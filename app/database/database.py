@@ -1,28 +1,27 @@
-from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker
-from sqlalchemy.orm import declarative_base
+
 import os
 
-DATABASE_URL = os.getenv('DATABASE_URL')
+from sqlalchemy import create_engine
+from sqlalchemy.orm import declarative_base, sessionmaker
 
-engine = create_engine(
-    DATABASE_URL
-)
+DATABASE_URL = os.getenv("DATABASE_URL")
 
-# Para comunicar com o mysql : msql+pymysql://usuario:senha@db:3306/terrarium
+if not DATABASE_URL:
+    raise RuntimeError("A variável DATABASE_URL não foi definida.")
+
+engine = create_engine(DATABASE_URL)
 
 SessionLocal = sessionmaker(
-    autocommit = False,
+    autocommit=False,
     autoflush=False,
-    bind=engine
+    bind=engine,
 )
-
-db = SessionLocal()
 
 Base = declarative_base()
 
+
 def get_db():
-    db=SessionLocal()
+    db = SessionLocal()
     try:
         yield db
     finally:
