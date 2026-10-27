@@ -2,8 +2,8 @@ import network
 from time import sleep
 import log
 
-SSID = 'NMMUV 2G'
-SENHA = '104156127'
+SSID = 'NOME_WIFI'
+SENHA = 'SENHA_WIFI'
 
 
 wifi = network.WLAN(network.STA_IF)
@@ -24,7 +24,7 @@ def conectar_wifi():
         config_off = wifi.ifconfig()
         my_ip = 'IPv4:',config_off[0] 
         print('Conectado!!')
-        log.log_system(f)
+        
         log.log_system(f'Sucess: Conectado ao WIfi IPv4:{my_ip}')
         return True
     except: 

@@ -3,7 +3,7 @@ import json
 
 
 BOT_TOKEN = 'TOKEN DO GRUPO QUE FOI CRIADO '
-CHAT_ID = 'ID DA CONVERSA SUA COM O BOOT'
+CHAT_ID = 'ID DA CONVERSA SUA COM O BOOT '
 
 
 def bot_telegram(temperatura,lampada,data_horario):

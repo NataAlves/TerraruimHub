@@ -1,8 +1,8 @@
 import urequests
 import log
 
-url_medicao = "http://serv-01u:8000/medicao"
-url_logs = "http://serv-01u.:8000/log"
+url_medicao = "http://<IP_DO_SERV_API>:8000/medicao"
+url_logs = "http://<IP_DO_SERV_API>:8000/log"
 
 def enviar_dados(dados):
     log.log_system('Enviando dados para API')
@@ -22,10 +22,5 @@ def enviar_log(data_hora):
     }
 
     log.log_system('Enviando LOG para API')
-
-    try: 
-        ...
-    except:
-        ...
 
     

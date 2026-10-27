@@ -7,6 +7,8 @@ from log import mudanca_de_estado, log_system
 from api import enviar_dados, enviar_log
 import gc
 from machine import WDT
+from telegram import bot_telegram, mensagem_telegram 
+
 
 log_system('ESP ligado')
 time.sleep(2)
@@ -18,6 +20,8 @@ try:
     ntptime.settime()
     print('Sincronizado NTP')
     time.sleep(1)
+    # mensagem para o telegram informando que o sistema iniciou
+    mensagem_telegram('Sistema iniciado com Sucesso')
 
 except:
     log_system('Falha ao conectar ao WIFI ou ao Atualizar o NTP')  
@@ -37,6 +41,10 @@ estado_antigo = 'DESCONHECIDO'
 temperatura = ler_temp()
 estado_atual = on_off(estado_antigo, temperatura)
 time.sleep(1)
+
+# Enviando mensagem para o telegram com a medição
+bot_telegram(temperatura,estado_atual,pegar_horas)
+
 while True:
 
     time_atual = time.ticks_ms()
@@ -81,6 +89,9 @@ while True:
             wdt.feed()
             # Enviando log para API
             enviar_log(data_hora)
+
+            # enviando medicao para o telegram
+            bot_telegram(temperatura,estado_atual,data_hora)
         except Exception as e:
             log_system(f"Erro API: {e}")
         finally:
