@@ -1,7 +1,7 @@
 services: 
   mysql: 
     mysql: mariadb:11
-    container_name: terrariumhub_mysql
+    container_name: terrariumhub-mysql
     restart: unless-stopped
 
     env_file:
